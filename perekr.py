@@ -15,8 +15,8 @@ url = 'https://www.perekrestok.ru/cat'
 
 headers = {
     "Accept": "*/*",
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"
-}
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36",
+    "cookie": '_gcl_au=1.1.900861375.1644765567; tmr_lvid=aeb76cab3153cd28bca1a01d0dc5bc41; tmr_lvidTS=1644765567621; _ym_uid=1644765568844451382; _ym_d=1644765568; _fbp=fb.1.1644765567860.639205379; agreements=j:{"isCookieAccepted":true,"isAdultContentEnabled":true,"isAppAppInstallPromptClosed":false}; flocktory-uuid=3cd8c6ab-99a4-4e41-8163-fcb5ee2e70e4-5; _ym_isad=2; _gid=GA1.2.2119018397.1647786493; coords=j:[37.5902646,54.1832091]; _ga=GA1.2.719832659.1644765568; tmr_detect=0%7C1647791209979; session=j:{"accessToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJpYXQiOjE2NDc3ODY0OTAsImV4cCI6MTY0NzgxNTI5MCwiZCI6IjEuNC4xLjA6ZjQzYTYwYTctMmYyNC00MmQwLTljYjItZmM3OTE3MWI0ZjJlIiwianRpIjoiZTM0NjA5MmEtNDVhZS00MDVjLWE4ZTEtZDkxOWI4ZWY5N2JiIiwiaXAiOiI4MC44MC4xOTQuMjM5IiwidSI6ImEzNjg0NDYyLWY3ZjQtNDI3Zi05YmQxLTliYjM2ZTBlOTJiZSJ9.ARQp0DvrGFYKJ60gafKKeA1gbs9nr7KQvwak7j5E_zZXzzS7qBPO2JmNHpmhB6IS5_6kRJc10NrvDPkmpRvkYrtHAZBDsrqNlasqgji7BufkwYVyPssAcapMuHqdIfOYv5ckP0P0TvNMWX3L6T3GiBJHM0FcJoMirsk7cwWg5CgwslHX","refreshToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJpYXQiOjE2NDc3ODY0OTAsImV4cCI6MTY2MzMzODQ5MCwiZCI6IjEuNC4xLjA6ZjQzYTYwYTctMmYyNC00MmQwLTljYjItZmM3OTE3MWI0ZjJlIiwianRpIjoiMDQyZjA5MDUtMzk3Yy00ZTBkLTgyMjAtNzZlMTAwNTBhZDcwIiwiaXAiOiI4MC44MC4xOTQuMjM5IiwidSI6ImEzNjg0NDYyLWY3ZjQtNDI3Zi05YmQxLTliYjM2ZTBlOTJiZSJ9.AevGCJiTwTBMc5ze1-oqRPtm2m7qRWrI3_LpRWteBlWwq97zy0-mJpf7l9VfxxZdiDZaXmnNOYuHQjL_kTTuF5a-AS47LyX3v_lmDp3erz7wLnUID65c5FNMeYhSOhAUFVAImX78C_2C85vpbD1_g3lw1R82Ngd98xmX-AVylq0wjTng","accessTokenExpiredAt":1647815290726,"refreshTokenExpiredAt":1663338490738,"device":{"uuid":"f43a60a7-2f24-42d0-9cb2-fc79171b4f2e"}}; tmr_reqNum=262; _dc_gtm_UA-189134493-1=1; TS0115a7cc=01a93f754737cb518f1873f503c428dc820053107b9c48f608afb3c38547d29dee111b6b1a46a3ab5a0df23731f70d22e0c13c57560fd37f728df9b6495a3e8debabfba776; _ga_5K49P5RFR8=GS1.1.1647795005.16.1.1647795419.49'}
 
 req = requests.get(url, headers=headers)
 src = req.text
@@ -71,7 +71,7 @@ for group in all_groups:
             subgroup_name = subgroup_name.replace('__', '_')
         subgroup_href = 'https://www.perekrestok.ru' + subgroup.get('href')
 
-        req = requests.get(subgroup_href, 'lxml')
+        req = requests.get(subgroup_href, headers=headers)
         src = req.text
 
         print(f'# Пишем {subgroup_name} #')
