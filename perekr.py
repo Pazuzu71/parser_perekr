@@ -1,3 +1,5 @@
+import re
+
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -76,6 +78,7 @@ for group in all_groups:
                     'Цена старая',
                     'Цена новая',
                     'Скидка',
+                    'Наличие',
                     'Ссылка'
                 )
             )
@@ -104,6 +107,11 @@ for group in all_groups:
                 price_new = product.find(class_="price-new").text
             except Exception:
                 price_new = '-'
+            # Наличие
+            try:
+                val = product.find(class_=re.compile("product-card__balance-badge")).text
+            except Exception:
+                val = '-'
             # Скидка на продукт
             try:
                 badge = product.find(class_="product-card__badges").find('span').text
@@ -123,6 +131,7 @@ for group in all_groups:
                         price_old,
                         price_new,
                         badge,
+                        val,
                         link
                     )
                 )
@@ -133,6 +142,7 @@ for group in all_groups:
                     'price_old': price_old,
                     'price_new': price_new,
                     'badge': badge,
+                    'val': val,
                     'link': link
                 }
             )
